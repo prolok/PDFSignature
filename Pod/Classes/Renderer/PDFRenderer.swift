@@ -24,7 +24,8 @@ open class PDFRenderController : NSObject {
     open func renderOntoPDF() -> URL {
         let documentRef = document.documentRef
         let pages = document.pageCount
-        let title = document.fileUrl?.lastPathComponent ?? "annotated.pdf"
+        let timestamp = String(NSDate().timeIntervalSince1970)
+        let title = document.fileUrl?.lastPathComponent ?? "annotated_" + timestamp + ".pdf"
         let tempPath = NSTemporaryDirectory() + title
         
         UIGraphicsBeginPDFContextToFile(tempPath, CGRect.zero, nil)
